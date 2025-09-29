@@ -1,0 +1,62 @@
+
+{% extends 'base.html' %}
+{% block title %}Transfer Money{% endblock %}
+
+{% block header %}Transfer Funds{% endblock %}
+
+
+
+{% block css %}
+<style>
+.error{
+  color: blue;
+  text-align: center;
+}
+
+.success{
+  color: goldenrod;
+  text-align: center;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% if error %}
+<h4 class="error"> {{error}}</h4>
+
+{% endif %}
+
+
+
+<div class="form-card">
+  <h2>Send Money</h2>
+  {% if transaction_ref %}
+
+    {% if success %}
+      <h4 class="success">{{success}}</h4>
+      <p align="center"> Your transaction reference : {{ transaction_ref }}</p>
+
+    {% endif %}
+
+  {% else %}
+
+    <form method="POST">
+      {% csrf_token %}
+      <label>Recipient Account Number</label>
+      <input type="text" name="account_number" placeholder="Enter account number" required>
+
+      <label>Amount</label>
+      <input type="number" name="amount" placeholder="Enter amount" required step="0.01">
+
+      <label>PIN</label>
+      <input type="password" name="pin" placeholder="Enter your 4-digit PIN" required maxlength="4">
+
+      <button type="submit" class="submit-btn">Transfer</button>
+     </form>
+
+
+  {% endif %} 
+
+</div>
+{% endblock %}

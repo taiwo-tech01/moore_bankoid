@@ -1,0 +1,165 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+             background: linear-gradient(135deg,#e8e6f2 0%, #f0f0f5 100%);
+             min-height: 100vh;
+             color: #333;
+        }
+
+        .dashboard{
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .main-content{
+            flex: 1;
+            padding: 24px,32px;
+            overflow: auto;
+        }
+
+        header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        header h1{
+            font-size: 28px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .main-top{
+            padding: 24px, 16px;
+            box-shadow: 0, 2px 8px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .main-top:hover{
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-btn{
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn.active{
+            background: white;
+            color: red;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .add-btn{
+            position: fixed;
+            bottom: 32px;
+            left: 112px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border: none;
+            border-radius: 16px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .add-btn:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.5);
+        }
+
+        .input_field{
+            border: none;
+            border-bottom: 1px solid mediumvioletred;
+            outline: none;
+            margin: 20px 0px;
+            font-size: 25px;
+        }
+
+        .form-style{
+            display: flex;
+            flex-direction: column;
+            align-items: centerv;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Welcome To Signup Page</h1>
+<div class="main-content">
+    {% if error %}
+        <h4 style="color: cadetblue; text-align: center;">{{error}}</h4>
+    {% endif %}    
+    <form class="form-style" method="post">
+        {% csrf_token %}
+
+        <div class="header">
+            <h1 allgn="center">Signup</h1>
+        </div>
+        <div class="main-top">
+            <label> email </label>
+            <div class="email-label">
+                <input type="email" required class="input_field" name="email"/>
+            </div>
+        </div>
+
+                <div class="main-top">
+            <label> Password </label>
+            <div class="Password-label">
+                <input type="password" required class="input_field" name="password1"/>
+            </div>
+        </div>
+
+              <div class="main-top">
+            <label>comfirm Password </label>
+            <div class="Password-label">
+                <input type="password" required class="input_field" name="password2"/>
+            </div>
+        </div>
+
+        <div class="toggle-buttons">
+            <button class="toggle=btn active" type="submit">Signup</button>
+        </div>
+        <div style="margin-top: 15px;">
+            <p>already have an account ? <a href="">login </a></p>
+        </div>
+
+</div>     
+    </form>
+    
+
+
+
+</body>
+
+<script src="{% static 'js/base.js' %}"></script>
+</html>
